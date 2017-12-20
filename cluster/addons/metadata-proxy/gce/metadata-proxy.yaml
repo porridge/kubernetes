@@ -43,10 +43,10 @@ spec:
           privileged: true
         resources:
           requests:
-            memory: "32Mi"
+            memory: "132Mi"
             cpu: "30m"
           limits:
-            memory: "32Mi"
+            memory: "132Mi"
             cpu: "30m"
       # BEGIN_PROMETHEUS_TO_SD
       - name: prometheus-to-sd-exporter

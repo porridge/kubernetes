@@ -1486,7 +1486,7 @@ function check-cluster() {
           -H "Authorization: Bearer ${KUBE_BEARER_TOKEN}" \
           ${secure} \
           --max-time 5 --fail --output /dev/null --silent \
-          "https://${KUBE_MASTER_IP}/api/v1/pods"; do
+          "https://${KUBE_MASTER_IP}/api/v1/pods?limit=100"; do
       local elapsed=$(($(date +%s) - ${start_time}))
       if [[ ${elapsed} -gt ${KUBE_CLUSTER_INITIALIZATION_TIMEOUT} ]]; then
           echo -e "${color_red}Cluster failed to initialize within ${KUBE_CLUSTER_INITIALIZATION_TIMEOUT} seconds.${color_norm}" >&2

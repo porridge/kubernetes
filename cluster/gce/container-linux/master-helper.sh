@@ -106,6 +106,7 @@ function create-master-instance-internal() {
       --metadata-from-file "${metadata}" \
       --disk "${disk}" \
       --boot-disk-size "${MASTER_ROOT_DISK_SIZE}" \
+      --min-cpu-platform="Intel Broadwell" \
       ${preemptible_master} \
       ${network} 2>&1); then
       echo "${result}" >&2

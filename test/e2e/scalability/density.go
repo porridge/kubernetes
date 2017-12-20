@@ -277,6 +277,7 @@ func runDensityTest(dtc DensityTestConfig, testPhaseDurations *timer.TestPhaseTi
 	framework.Logf("E2E startup time for %d pods: %v", dtc.PodCount, startupTime)
 	framework.Logf("Throughput (pods/s) during cluster saturation phase: %v", float32(dtc.PodCount)/float32(startupTime/time.Second))
 	replicationCtrlStartupPhase.End()
+	return startupTime
 
 	printPodAllocationPhase := testPhaseDurations.StartPhase(400, "printing pod allocation")
 	defer printPodAllocationPhase.End()
@@ -460,7 +461,7 @@ var _ = SIGDescribe("Density", func() {
 	densityTests := []Density{
 		// TODO: Expose runLatencyTest as ginkgo flag.
 		{podsPerNode: 3, runLatencyTest: false, kind: api.Kind("ReplicationController")},
-		{podsPerNode: 30, runLatencyTest: true, kind: api.Kind("ReplicationController")},
+		{podsPerNode: 30, runLatencyTest: false, kind: api.Kind("ReplicationController")},
 		{podsPerNode: 50, runLatencyTest: false, kind: api.Kind("ReplicationController")},
 		{podsPerNode: 95, runLatencyTest: true, kind: api.Kind("ReplicationController")},
 		{podsPerNode: 100, runLatencyTest: false, kind: api.Kind("ReplicationController")},
